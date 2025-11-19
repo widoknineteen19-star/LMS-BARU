@@ -1,30 +1,31 @@
 import React, { useState } from "react";
-import { FaBell, FaSignOutAlt, FaSearch } from "react-icons/fa";
+// Import FaChevronLeft untuk ikon panah kembali
+import { FaBell, FaSignOutAlt, FaSearch, FaChevronLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const [q, setQ] = useState("");
   const navigate = useNavigate();
 
-const handleLihatNilai = (title) => {
-  const routeMap = {
-    "MINI-CEX": "/mini-cex",
-    "DOPS": "/dops",
-    "CBD": "/cbd",
-    "Journal Reading": "/journal-reading",
-    "Penyuluhan & Edukasi": "/penyuluhan",
-    "Ujian Lisan": "/ujian-lisan",
-    "Ujian Tulis MCQ": "/ujian-tulis",
-    "Kondite Klinis": "/kondite",
-    "Logbook": "/logbook",
-  };
+  const handleLihatNilai = (title) => {
+    const routeMap = {
+      "MINI-CEX": "/mini-cex",
+      "DOPS": "/dops",
+      "CBD": "/cbd",
+      "Journal Reading": "/journal-reading",
+      "Penyuluhan & Edukasi": "/penyuluhan",
+      "Ujian Lisan": "/ujian-lisan",
+      "Ujian Tulis MCQ": "/ujian-tulis",
+      "Kondite Klinis": "/kondite",
+      "Logbook": "/logbook",
+    };
 
-  if (routeMap[title]) {
-    navigate(routeMap[title]);
-  } else {
-    alert(`Halaman untuk ${title} belum tersedia`);
-  }
-};
+    if (routeMap[title]) {
+      navigate(routeMap[title]);
+    } else {
+      alert(`Halaman untuk ${title} belum tersedia`);
+    }
+  };
 
   const sumatifFormatif = [
     { id: "1", title: "MINI-CEX", type: "Sumatif", weight: "-", img: "src/assets/book1.svg" },
@@ -52,9 +53,9 @@ const handleLihatNilai = (title) => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 font-poppins">
+    <div className="min-h-screen bg-gray-50 font-poppins relative">
       {/* Navbar */}
-      <header className="bg-emerald-500 text-white py-3 px-8 flex items-center justify-between rounded-2xl shadow-md m-4">
+      <header className="bg-emerald-500 text-white py-3 px-8 flex items-center justify-between rounded-2xl shadow-md m-4 relative z-10">
         <div className="flex-1 flex justify-center items-center space-x-3">
           <img src="src/assets/Logo Unizar.svg" alt="Logo Unizar" className="w-10 h-10" />
           <div className="text-center">
@@ -78,7 +79,7 @@ const handleLihatNilai = (title) => {
           </div>
 
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/")} // Tetap ke halaman login
             className="w-10 h-10 flex items-center justify-center border border-white/20 rounded-xl bg-white/10 hover:bg-white/20 transition"
           >
             <FaSignOutAlt className="text-white text-xl" />
@@ -92,8 +93,24 @@ const handleLihatNilai = (title) => {
         </div>
       </header>
 
+      {/* ====================== Tombol KEMBALI (Minimalis & Posisi Absolute) ====================== */}
+      <button
+        // Menggunakan rute '/daftapenyakit' (huruf kecil) sebagai target, BUKAN ke halaman login.
+        onClick={() => navigate("/DaftarPenyakit")} 
+        className="absolute top-[85px] right-6 z-20 
+                   flex items-center justify-center 
+                   bg-white text-gray-700 
+                   px-4 py-2 rounded-lg 
+                   border border-gray-300 shadow-md 
+                   hover:bg-gray-100 transition 
+                   font-bold text-sm"
+      >
+        <FaChevronLeft className="text-base mr-1" />
+        KEMBALI
+      </button>
+
       {/* Search Bar */}
-      <div className="px-4">
+      <div className="px-4 mt-6"> 
         <div className="flex justify-center w-full">
           <div className="flex w-full max-w-full bg-white shadow-md rounded-2xl overflow-hidden border border-gray-200">
             <input

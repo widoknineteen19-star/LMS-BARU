@@ -16,36 +16,33 @@ export default function FormPenilaianDOPS() {
   const komponen = [
     {
       id: "k1",
-      label: "Kemampuan Membangun Komunikasi",
-      bobot: 5,
+      label: "Persiapan Preprosedural",
+      bobot: 20,
       poin: [
-        "Menyapa dan memberi salam",
-        "Memperkenalkan diri",
-        "Menanyakan identitas pasien",
+        "Sesuai dengan topik Skill yang diberikan",  
+        "Melakukan inform consent (menjelaskan tujuan tindakan procedural)",
+        "Mempersiapkan alat dan bahan yang akan digunakan untuk melakukan prosedur",   
+        "Melakukan persiapan sebelum prosedur dilakukan (mahasiswa dan pasien)",
       ],
     },
     {
       id: "k2",
-      label: "Kemampuan Anamnesa",
-      bobot: 15,
+      label: "Prosedur Pemeriksaan Medis",
+      bobot: 70,
       poin: [
-        "Menanyakan Keluhan Utama",
-        "Menanyakan RPS",
-        "Menanyakan RPD",
-        "Menanyakan Riwayat Kesehatan Keluarga",
-        "Menanyakan Riwayat Sosial dan Ekonomi",
-        "Mengaplikasikan The Sacred Seven",
+        "Melakukan tindakan aseptic dan antiseptic secara aman",
+        "Memberikan analgesik dan anastesi yang aman (atau sesuai kebutuhan menurut kasus)",
+        "Menguasai teknik procedur tindaka medis",
+        "Tidak membahayakan pasien",
       ],
     },
     {
       id: "k3",
-      label: "Kemampuan Pemeriksaan Fisik",
-      bobot: 15,
+      label: "Pasca Prosedural",
+      bobot: 10,
       poin: [
-        "Melakukan informed consent sebelum pemeriksaan fisik dilakukan",
-        "Mengikuti urutan logis dalam pemeriksaan (Head to toe examination)",
-        "Memeriksa sesuai masalah dan efisien",
-        "Memberikan keterangan hasil pemeriksaan kepada pasien",
+        "Mengelola pasca tindakan medis dengan baik",
+        "Memberikan KIE kepada pasien",
       ],
     },
   ];
@@ -75,41 +72,61 @@ export default function FormPenilaianDOPS() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-6 px-6 font-poppins">
-      {/* HEADER */}
       <div className="max-w-7xl mx-auto">
         <h1 className="text-2xl font-bold text-gray-900 mb-6">
           Formulir Penilaian Sumatif
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* === Kolom Kiri (Form Input & Komponen) === */}
+          {/* === KOLOM KIRI === */}
           <div className="lg:col-span-3 space-y-4">
-            {/* === Identitas Dokter Muda, Pasien, Situasi === */}
+            {/* === IDENTITAS DOKTER MUDA, DATA PASIEN, SITUASI === */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
               <div className="grid md:grid-cols-3 gap-6 text-sm">
-
                 {/* Identitas Dokter Muda */}
                 <div>
-                  <h3 className="font-semibold text-gray-800 pb-1 border-b border-gray-200 mb-3">
+                  <h3 className="font-semibold text-gray-800 border-b border-gray-200 pb-1 mb-3">
                     Identitas Dokter Muda
                   </h3>
                   <label className="text-gray-700 text-sm font-medium">Dokter Muda</label>
-                  <input type="text" className="w-full border border-gray-300 bg-gray-50 rounded-md p-2 mb-3 text-gray-800" value={formData.nama} readOnly />
+                  <input
+                    type="text"
+                    className="w-full border border-gray-300 bg-gray-50 rounded-md p-2 mb-3 text-gray-800"
+                    value={formData.nama}
+                    readOnly
+                  />
                   <label className="text-gray-700 text-sm font-medium">NIM</label>
-                  <input type="text" className="w-full border border-gray-300 bg-gray-50 rounded-md p-2 text-gray-800" value={formData.nim} readOnly />
+                  <input
+                    type="text"
+                    className="w-full border border-gray-300 bg-gray-50 rounded-md p-2 text-gray-800"
+                    value={formData.nim}
+                    readOnly
+                  />
                 </div>
 
                 {/* Data Pasien */}
                 <div>
-                  <h3 className="font-semibold text-gray-800 pb-1 border-b border-gray-200 mb-3">
+                  <h3 className="font-semibold text-gray-800 border-b border-gray-200 pb-1 mb-3">
                     Data Pasien
                   </h3>
                   <label className="text-gray-800 text-sm font-medium">Pasien</label>
-                  <input type="text" placeholder="Nama Pasien" className="w-full border border-gray-300 bg-gray-50 rounded-md p-2 mb-3" />
+                  <input
+                    type="text"
+                    placeholder="Nama Pasien"
+                    className="w-full border border-gray-300 bg-gray-50 rounded-md p-2 mb-3"
+                  />
                   <label className="text-gray-800 text-sm font-medium">Problem Pasien</label>
-                  <input type="text" placeholder="Contoh: Nyeri Dada" className="w-full border border-gray-300 bg-gray-50 rounded-md p-2 mb-3" />
+                  <input
+                    type="text"
+                    placeholder="Contoh: Nyeri Dada"
+                    className="w-full border border-gray-300 bg-gray-50 rounded-md p-2 mb-3"
+                  />
                   <label className="text-gray-700 text-sm font-medium">Umur</label>
-                  <input type="number" placeholder="Umur" className="w-full border border-gray-300 bg-gray-50 rounded-md p-2 mb-3" />
+                  <input
+                    type="number"
+                    placeholder="Umur"
+                    className="w-full border border-gray-300 bg-gray-50 rounded-md p-2 mb-3"
+                  />
                   <label className="text-gray-700 text-sm font-medium">Jenis Kelamin Pasien</label>
                   <div className="flex gap-4 mt-1">
                     <label className="flex items-center gap-1 text-gray-700">
@@ -123,7 +140,7 @@ export default function FormPenilaianDOPS() {
 
                 {/* Situasi Ujian */}
                 <div>
-                  <h3 className="font-semibold text-gray-800 pb-1 border-b border-gray-200 mb-3">
+                  <h3 className="font-semibold text-gray-800 border-b border-gray-200 pb-1 mb-3">
                     Situasi Ujian
                   </h3>
                   <label className="font-medium text-gray-700 text-sm block mb-1">Situasi Ruangan</label>
@@ -146,7 +163,7 @@ export default function FormPenilaianDOPS() {
               </div>
             </div>
 
-            {/* === Daftar Komponen Penilaian === */}
+            {/* === DAFTAR KOMPONEN PENILAIAN === */}
             <div className="space-y-4">
               {komponen.map((item, index) => (
                 <div
@@ -200,7 +217,7 @@ export default function FormPenilaianDOPS() {
               ))}
             </div>
 
-            {/* === UMPAN BALIK DOKTER MUDA === */}
+            {/* === UMPAN BALIK === */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-200 mt-6">
               <div className="text-center font-semibold text-gray-800 py-4 text-sm">
                 Umpan Balik Terhadap Performance Dokter Muda
@@ -244,14 +261,14 @@ export default function FormPenilaianDOPS() {
             </div>
           </div>
 
-          {/* === Kolom Kanan (Sticky Total Nilai) === */}
+          {/* === KOLOM KANAN (TOTAL NILAI) === */}
           <div className="lg:col-span-1">
             <div className="sticky top-8 bg-white border border-gray-100 rounded-2xl shadow-md p-6 text-center">
               <h3 className="text-gray-800 font-semibold text-lg mb-1">
-                Mini-CEX
+                DOPS
               </h3>
               <p className="text-gray-500 text-xs mb-3">
-                (Mini Clinical Evaluation Exercise)
+                (Direct Observation of Procedural Skills)
               </p>
               <p className="text-gray-500 text-sm">TOTAL NILAI AKHIR</p>
               <div className="text-emerald-500 font-extrabold text-5xl mt-2">
@@ -278,13 +295,11 @@ export default function FormPenilaianDOPS() {
             <div className="border border-blue-200 text-blue-600 bg-blue-50 rounded-lg px-3 py-2 text-center font-semibold mb-3">
               {popup.label}
             </div>
-           <ul className="list-disc pl-6 pr-3 text-gray-700 text-sm space-y-2 bg-gray-50 p-4 rounded-lg text-justify leading-relaxed">
-              {popup.poin && popup.poin.length > 0 ? (
-                popup.poin.map((p, i) => (
-                  <li key={i} className="text-justify indent-0">{p}</li>
-                ))
+            <ul className="list-disc pl-6 pr-3 text-gray-700 text-sm space-y-2 bg-gray-50 p-4 rounded-lg text-justify leading-relaxed">
+              {popup.poin?.length ? (
+                popup.poin.map((p, i) => <li key={i}>{p}</li>)
               ) : (
-                <li className="text-justify">Belum ada deskripsi penilaian.</li>
+                <li>Belum ada deskripsi penilaian.</li>
               )}
             </ul>
           </div>

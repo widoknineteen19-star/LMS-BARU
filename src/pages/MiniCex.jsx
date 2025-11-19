@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-
 import {
   FaArrowLeft,
   FaBell,
   FaUsers,
   FaUser,
   FaCheckCircle,
-  FaInfoCircle,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 export default function MiniCex() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Sumatif");
-  const [selectedGroup, setSelectedGroup] = useState(null);
 
   const dataKelompok = [
     { id: 1, nama: "Kelompok 1", dosen: "Dr. dr. Ing. M.Erg", periode: "25 - 2025", jumlah: 7, kode: "MBG999" },
@@ -72,28 +69,6 @@ export default function MiniCex() {
         </div>
       </header>
 
-      {/* ✅ Subheader */}
-      <div className="bg-gray-100 rounded-xl mx-8 px-6 py-3 flex justify-between items-center">
-        <h3 className="text-gray-800 font-semibold text-sm">
-          Kelompok <span className="font-bold">MINI-CEX</span>
-        </h3>
-        <div className="text-xs text-gray-600 space-x-2">
-          <span>
-            Kode Kelas <span className="text-emerald-600 font-semibold">(MBG999)</span>
-          </span>
-          <span>|</span>
-          <span className="text-emerald-600 font-semibold cursor-pointer hover:underline">
-            Penilaian Sumatif
-          </span>
-          <span>|</span>
-          <span>Mini-CEX</span>
-          <span>|</span>
-          <span>
-            Kelompok <span className="text-emerald-600 font-semibold">(1-7)</span> / Periode 2025
-          </span>
-        </div>
-      </div>
-
       {/* ✅ Tabs */}
       <div className="flex items-center gap-6 px-8 mt-4">
         {["Sumatif", "Absensi", "Penilaian"].map((tab) => (
@@ -119,7 +94,7 @@ export default function MiniCex() {
             {dataKelompok.map((k) => (
               <div
                 key={k.id}
-                className="bg-white border rounded-xl shadow-sm hover:shadow-md transition overflow-hidden"
+                className="group bg-white border rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
                 <div className="relative">
                   <img
@@ -130,13 +105,9 @@ export default function MiniCex() {
                   <span className="absolute top-2 left-2 bg-emerald-500 text-white text-[10px] font-semibold px-2 py-0.5 rounded-md shadow">
                     Periode {k.periode}
                   </span>
-
-                  <button
-                    onClick={() => setSelectedGroup(k)}
-                    className="absolute bottom-0 right-0 bg-purple-500 hover:bg-purple-700 text-white text-[10px] font-semibold px-3 py-1 rounded-md shadow"
-                  >
+                  <span className="absolute bottom-2 right-2 bg-purple-600 text-white text-[10px] font-semibold px-3 py-1 rounded-md shadow">
                     {k.nama}
-                  </button>
+                  </span>
                 </div>
 
                 <div className="p-3">
@@ -147,6 +118,19 @@ export default function MiniCex() {
                   <div className="flex items-center mt-2 text-xs text-gray-600">
                     <FaUser className="text-purple-600 mr-1" />
                     <span>{k.dosen}</span>
+                  </div>
+
+                  {/* Efek hover tampil detail */}
+                  <div className="opacity-0 group-hover:opacity-100 mt-2 text-xs text-gray-700 transition-opacity duration-300">
+                    <hr className="border-emerald-400 my-1" />
+                    <p>Status Penilaian: -</p>
+                    <p>Deadline: -</p>
+                    <p>
+                      Kode:{" "}
+                      <span className="text-emerald-600 font-semibold">
+                        ({k.kode})
+                      </span>
+                    </p>
                   </div>
 
                   <div className="flex justify-end mt-3">
@@ -160,10 +144,9 @@ export default function MiniCex() {
           </div>
         )}
 
-        {/* === PENILAIAN (VERTIKAL) === */}
+        {/* === PENILAIAN === */}
         {activeTab === "Penilaian" && (
           <div className="flex flex-col lg:flex-row gap-6">
-            {/* 🔹 KIRI: TABEL PENILAIAN */}
             <div className="flex-1 bg-white rounded-xl shadow-md p-4">
               <h4 className="font-semibold mb-3 text-gray-800">Point Penilaian</h4>
               <table className="w-full text-sm border-collapse">
@@ -196,65 +179,53 @@ export default function MiniCex() {
                 </tbody>
               </table>
 
-{/* 🔹 NILAI MAHASISWA */}
-<div className="mt-6">
-  {/* Header tabel */}
-  <div className="flex items-center justify-between bg-gray-100 border border-gray-200 rounded-t-xl p-3 font-semibold text-gray-700 text-sm">
-    <div className="flex items-center gap-2 w-1/4">
-      <span className="bg-emerald-500 text-white px-2 py-1 rounded-full text-xs">1</span>
-      <span>Mahasiswa</span>
-    </div>
-    <div className="flex justify-between w-2/4 text-center">
-      {["K1","K2","K3","K4","K5","K6","K7","K8","K9","K10"].map((k, i) => (
-        <span key={i} className="w-6">{k}</span>
-      ))}
-    </div>
-    <div className="w-1/6 text-right">Nilai Akhir</div>
-  </div>
+              {/* Nilai Mahasiswa */}
+              <div className="mt-6">
+                <div className="flex items-center justify-between bg-gray-100 border border-gray-200 rounded-t-xl p-3 font-semibold text-gray-700 text-sm">
+                  <div className="flex items-center gap-2 w-1/4">
+                    <span className="bg-emerald-500 text-white px-2 py-1 rounded-full text-xs">
+                      1
+                    </span>
+                    <span>Mahasiswa</span>
+                  </div>
+                  <div className="w-1/6 text-right">Nilai Akhir</div>
+                </div>
 
-  {/* Daftar mahasiswa */}
-  <div className="flex flex-col">
-    {[
-      { nama: "Mister Aloy", nim: "097-001" },
-      { nama: "Joni Jono", nim: "097-002" },
-      { nama: "Mardiana", nim: "097-003" },
-      { nama: "Shusi Susanti", nim: "097-004" },
-      { nama: "Mister Alex", nim: "097-005" },
-      { nama: "Putri Kartika", nim: "097-006" },
-      { nama: "Icha Aska", nim: "097-007" },
-    ].map((mhs, i) => (
-      <div
-        key={i}
-        className="flex items-center justify-between bg-white border-b border-gray-200 p-3 hover:bg-gray-50 cursor-pointer"
-      >
-        {/* Mahasiswa */}
-        <div className="flex items-center gap-2 w-1/4">
-  <FaCheckCircle className="text-emerald-500" />
-  <button
-    onClick={() => navigate(`/form-penilaian/${encodeURIComponent(mhs.nama)}`)}
-    className="text-left font-semibold text-sm text-emerald-700 hover:text-emerald-800 hover:underline cursor-pointer"
-  >
-    {mhs.nama}
-    <p className="text-xs text-gray-500 font-normal">NIM: {mhs.nim}</p>
-  </button>
-</div>
-
-
-        {/* Nilai Akhir */}
-        <div className="w-1/6 text-right font-bold text-emerald-600 text-lg">
-          0.00
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
-
+                <div className="flex flex-col">
+                  {students.map((mhs, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center justify-between bg-white border-b border-gray-200 p-3 hover:bg-gray-50 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2 w-1/4">
+                        <FaCheckCircle className="text-emerald-500" />
+                        <button
+                          onClick={() =>
+                            navigate(`/form-penilaian/${encodeURIComponent(mhs.nama)}`)
+                          }
+                          className="text-left font-semibold text-sm text-emerald-700 hover:text-emerald-800 hover:underline cursor-pointer"
+                        >
+                          {mhs.nama}
+                          <p className="text-xs text-gray-500 font-normal">
+                            NIM: {mhs.nim}
+                          </p>
+                        </button>
+                      </div>
+                      <div className="w-1/6 text-right font-bold text-emerald-600 text-lg">
+                        {mhs.nilai}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* 🔹 KANAN: INFO MINI-CEX */}
+            {/* Info MINI-CEX */}
             <div className="w-full lg:w-72 bg-white rounded-xl shadow-md p-4">
               <h3 className="font-bold text-emerald-700 text-lg mb-1">MINI-CEX</h3>
-              <p className="text-gray-600 text-sm mb-4">Mini Clinical Evaluation Exercise</p>
+              <p className="text-gray-600 text-sm mb-4">
+                Mini Clinical Evaluation Exercise
+              </p>
 
               <div className="border-t pt-2 text-sm">
                 <p className="font-semibold text-gray-800 mb-1">DETAIL INFORMASI</p>
@@ -268,59 +239,6 @@ export default function MiniCex() {
           </div>
         )}
       </div>
-
-      {/* ✅ POPUP DETAIL KELOMPOK */}
-      {selectedGroup && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <div className="bg-white w-80 rounded-xl shadow-lg overflow-hidden relative">
-            <div className="relative">
-              <img src="src/assets/minicex.png" alt="Header" className="w-full h-32 object-cover" />
-              <span className="absolute top-2 left-2 bg-emerald-500 text-white text-[10px] font-semibold px-2 py-0.5 rounded-md shadow">
-                Periode {selectedGroup.periode}
-              </span>
-              <span className="absolute bottom-2 right-2 bg-purple-600 text-white text-[10px] font-semibold px-3 py-1 rounded-md shadow">
-                {selectedGroup.nama}
-              </span>
-            </div>
-
-            <div className="p-4 text-sm">
-              <h3 className="font-bold text-lg mb-1">MINI-CEX</h3>
-              <div className="flex items-center text-gray-600 mb-2">
-                <FaUser className="text-purple-600 mr-1" />
-                {selectedGroup.dosen}
-              </div>
-
-              <hr className="border-emerald-500 mb-2" />
-
-              <p className="text-gray-700">
-                <span className="font-semibold">Status Penilaian:</span> -
-              </p>
-              <p className="text-gray-700">
-                <span className="font-semibold">Deadline:</span> -
-              </p>
-              <p className="text-gray-700">
-                <span className="font-semibold">Kode:</span>{" "}
-                <span className="text-emerald-600 font-semibold">
-                  ({selectedGroup.kode})
-                </span>
-              </p>
-
-              <div className="flex justify-end mt-3">
-                <div className="flex items-center gap-1 text-purple-700 border border-purple-300 px-2 py-0.5 rounded-md text-xs font-semibold">
-                  <FaUsers className="text-purple-700" /> {selectedGroup.jumlah}
-                </div>
-              </div>
-
-              <button
-                onClick={() => setSelectedGroup(null)}
-                className="absolute top-2 right-2 bg-white/80 hover:bg-white text-gray-700 text-xs px-2 py-0.5 rounded-md shadow"
-              >
-                ✕
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

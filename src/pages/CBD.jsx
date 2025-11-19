@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-export default function DOPS() {
+export default function CBD() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Sumatif");
 
@@ -98,7 +98,7 @@ export default function DOPS() {
               >
                 <div className="relative">
                   <img
-                    src="src/assets/DOPS.png"
+                    src="src/assets/CBD.png"
                     alt={k.nama}
                     className="w-full h-32 object-cover rounded-t-xl"
                   />
@@ -112,7 +112,7 @@ export default function DOPS() {
 
                 <div className="p-3">
                   <div className="flex justify-between items-center">
-                    <h4 className="font-bold text-sm">DOPS</h4>
+                    <h4 className="font-bold text-sm">CBD</h4>
                   </div>
 
                   <div className="flex items-center mt-2 text-xs text-gray-600">
@@ -159,9 +159,14 @@ export default function DOPS() {
                 </thead>
                 <tbody>
                   {[
-                    ["K1", "Persiapan preprosedural ", "20%"],
-                    ["K2", "Prosedur pemeriksaan medis", "70%"],
-                    ["K3", "Pasca procedural  ", "10%"],
+                    ["K1", "Kemampuan Membuat Catatan Medis", "10%"],
+                    ["K2", "Clinical Assessment", "25%"],
+                    ["K3", "Investigasi dan Rujukan", "10%"],
+                    ["K4", "Terapi", "20%"],
+                    ["K5", "Follow Up dan Rencana Pengelolaan Selanjutnya", "15%"],
+                    ["K6", "Kemampuan Dakam Memimpin Diskusi Kelompok", "5%"],
+                    ["K7", "Professionalisme", "10%"],
+                    ["K8", "Penelian Klinik dan Diskusi", "5%"],
                   ].map(([k, ket, bobot]) => (
                     <tr key={k} className="border-t border-gray-100">
                       <td className="p-2 font-semibold">{k}</td>
@@ -194,7 +199,7 @@ export default function DOPS() {
                         <FaCheckCircle className="text-emerald-500" />
                         <button
                           onClick={() =>
-                            navigate(`/form-penilaian-dops/${encodeURIComponent(mhs.nama)}`)
+                            navigate(`/form-penilaian/${encodeURIComponent(mhs.nama)}`)
                           }
                           className="text-left font-semibold text-sm text-emerald-700 hover:text-emerald-800 hover:underline cursor-pointer"
                         >
@@ -213,17 +218,17 @@ export default function DOPS() {
               </div>
             </div>
 
-            {/* Info DOPS*/}
+            {/* Info MINI-CEX */}
             <div className="w-full lg:w-72 bg-white rounded-xl shadow-md p-4">
-              <h3 className="font-bold text-emerald-700 text-lg mb-1">DOPS</h3>
+              <h3 className="font-bold text-emerald-700 text-lg mb-1">CBD</h3>
               <p className="text-gray-600 text-sm mb-4">
-                Direct Observation Of Procedural Skills
+                Mini Clinical Evaluation Exercise
               </p>
 
               <div className="border-t pt-2 text-sm">
                 <p className="font-semibold text-gray-800 mb-1">DETAIL INFORMASI</p>
                 <ul className="text-gray-600 space-y-1 text-xs">
-                  <li>📘 Nama Formatif: <b>DOPS</b></li>
+                  <li>📘 Nama Formatif: <b>CBD</b></li>
                   <li>👨‍⚕️ Jenis Dosen: <b>Dosen Muda</b></li>
                   <li>🧾 Jumlah Komponen Penilaian: <b>10 Komponen</b></li>
                 </ul>
